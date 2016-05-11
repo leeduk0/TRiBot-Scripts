@@ -18,7 +18,7 @@ import java.util.Collections;
 public class MainScript extends Script implements MessageListening07 {
 
     private boolean readyToTrade = false;
-    private boolean needsToTeleport = false;
+    private boolean needToTeleport = false;
     private String muleName = "Test";
     private String clanName = "Test";
 
@@ -62,12 +62,12 @@ public class MainScript extends Script implements MessageListening07 {
         this.readyToTrade = readyToTrade;
     }
 
-    public boolean isNeedsToTeleport() {
-        return needsToTeleport;
+    public boolean isNeedToTeleport() {
+        return needToTeleport;
     }
 
-    public void setNeedsToTeleport(boolean needsToTeleport) {
-        this.needsToTeleport = needsToTeleport;
+    public void setNeedToTeleport(boolean needToTeleport) {
+        this.needToTeleport = needToTeleport;
     }
 
     public String getClanName() {
@@ -77,13 +77,6 @@ public class MainScript extends Script implements MessageListening07 {
     public void setClanName(String clanName) {
         this.clanName = clanName;
     }
-
-
-
-
-
-
-
 
     @Override
     public void personalMessageReceived(String s, String s1) {

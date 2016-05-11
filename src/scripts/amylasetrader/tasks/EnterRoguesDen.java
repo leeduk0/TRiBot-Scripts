@@ -32,7 +32,6 @@ public class EnterRoguesDen implements Task {
 
     @Override
     public void execute() {
-        General.println("EnterRoguesDen");
             RSObject[] trapdoor = Objects.findNearest(10, "Trapdoor");
             if(trapdoor.length > 0) {
                 if(trapdoor[0].isOnScreen()) {
@@ -40,6 +39,7 @@ public class EnterRoguesDen implements Task {
                         Timing.waitCondition(new Condition() {
                             @Override
                             public boolean active() {
+                                General.sleep(200);
                                 return Player.getPosition().getPlane() == 0;
                             }
                         }, 5000);
@@ -49,6 +49,7 @@ public class EnterRoguesDen implements Task {
                     Timing.waitCondition(new Condition() {
                         @Override
                         public boolean active() {
+                            General.sleep(200);
                             return Player.isMoving();
                         }
                     }, 12000);

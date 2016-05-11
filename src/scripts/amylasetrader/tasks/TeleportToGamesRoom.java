@@ -18,7 +18,7 @@ public class TeleportToGamesRoom implements Task {
 
     @Override
     public boolean validate() {
-        return script.isNeedsToTeleport();
+        return script.isNeedToTeleport();
     }
 
     @Override
@@ -26,7 +26,7 @@ public class TeleportToGamesRoom implements Task {
         General.println("TeleportToGamesRoom");
         if(Minigames.selectMinigame(Minigames.MINIGAMES.BURTHORPE_GAMES_ROOM)) {
             if(Minigames.teleport()) {
-                script.setNeedsToTeleport(false);
+                script.setNeedToTeleport(false);
             }
         }
 

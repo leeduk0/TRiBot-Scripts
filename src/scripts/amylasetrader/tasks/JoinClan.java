@@ -20,7 +20,7 @@ public class JoinClan implements Task {
 
     @Override
     public boolean validate() {
-        return !ClanChat.isInClanChat();
+        return ClanChat.isInClanChat();
     }
 
     @Override

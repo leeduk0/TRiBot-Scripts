@@ -55,6 +55,7 @@ public class TradeGrace implements Task {
                 Timing.waitCondition(new Condition() {
                     @Override
                     public boolean active() {
+                        General.sleep(200);
                         return Player.isMoving();
                     }
                 },12000);
