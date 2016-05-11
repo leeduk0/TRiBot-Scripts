@@ -47,7 +47,7 @@ public class TradeGrace implements Task {
                     public boolean active() {
                         return Player.isMoving();
                     }
-                },12000);
+                }, 12000);
             }
         } else {
             DPathNavigator dPathNavigator = new DPathNavigator();
