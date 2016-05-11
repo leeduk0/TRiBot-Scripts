@@ -19,8 +19,8 @@ public class MainScript extends Script implements MessageListening07 {
 
     private boolean readyToTrade = false;
     private boolean needToTeleport = false;
-    private String muleName = "Test";
-    private String clanName = "Test";
+    private String muleName = "Sphonix";
+    private String clanName = "Sphonix";
 
     private ArrayList<Task> tasks = new ArrayList<>();
 
@@ -32,9 +32,14 @@ public class MainScript extends Script implements MessageListening07 {
                 new LeaveGamesRoom(this),
                 new WalkToInn(this),
                 new EnterRoguesDen(this),
+                new WalkToGrace(this),
                 new TradeGrace(this),
                 new BuyAmylasePacks(this),
-                new OpenAmylasePacks(this));
+                new OpenAmylasePacks(this),
+                new HopToMule(this),
+                new TradeMule(this),
+                new UseTeletab(this)
+        );
 
         while(true) {
             for (Task task : tasks) {

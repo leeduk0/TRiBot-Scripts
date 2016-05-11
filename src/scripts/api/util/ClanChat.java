@@ -91,28 +91,6 @@ public class ClanChat
         return playerAction(player, "Add friend", 0);
     }
 
-    public static boolean hopTo(String player)
-    {
-        playerAction(player, "Hop-to", 0);
-
-        Timing.waitCondition(new Condition()
-        {
-            @Override
-            public boolean active()
-            {
-                return Login.getLoginState().equals(Login.STATE.WELCOMESCREEN);
-            }
-        }, General.random(4000, 6000));
-
-        if (Login.getLoginState().equals(Login.STATE.WELCOMESCREEN))
-        {
-            Interfaces.get(378, 17).click();
-
-            return true;
-        }
-
-        return false;
-    }
 
     public static void join(String clanChat)
     {
