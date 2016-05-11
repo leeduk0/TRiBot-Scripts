@@ -27,13 +27,13 @@ public class OpenAmylasePacks implements Task {
 
     @Override
     public void execute() {
-        General.println("OpenAmylasePacks");
         if(Shopping.isShopOpen()) {
             if(Shopping.close()) {
                 Timing.waitCondition(new Condition() {
                     @Override
                     public boolean active() {
-                        return Shopping.isShopOpen();
+                        General.sleep(200);
+                        return !Shopping.isShopOpen();
                     }
                 }, 3000);
             }

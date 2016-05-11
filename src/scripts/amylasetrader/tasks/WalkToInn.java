@@ -29,14 +29,13 @@ public class WalkToInn implements Task {
 
     @Override
     public void execute() {
-        General.println("WalkToInn");
         DPathNavigator dPathNavigator = new DPathNavigator();
         if(dPathNavigator.traverse(Areas.BURTHORPE_INN.getRandomTile())) {
                 Timing.waitCondition(new Condition() {
                 @Override
                 public boolean active() {
                     General.sleep(100);
-                    return Player.isMoving();
+                    return !Player.isMoving();
                 }
             }, 12000);
         }

@@ -20,12 +20,11 @@ public class JoinClan implements Task {
 
     @Override
     public boolean validate() {
-        return ClanChat.isInClanChat();
+        return !ClanChat.isInClanChat();
     }
 
     @Override
     public void execute() {
-        General.println("Join Clan");
         if(!ClanChat.isTabOpen()) {
             ClanChat.openTab();
         }
@@ -35,7 +34,7 @@ public class JoinClan implements Task {
             @Override
             public boolean active() {
                 General.sleep(100);
-                    return ClanChat.isInClanChat();
+                    return ClanChat.isInClanChat(); // Breaks when true
                 }
             }, 2000);
 
