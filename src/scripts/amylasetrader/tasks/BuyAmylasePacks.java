@@ -3,6 +3,7 @@ package scripts.amylasetrader.tasks;
 import org.tribot.api.General;
 import org.tribot.api.Timing;
 import org.tribot.api2007.Inventory;
+import org.tribot.api2007.Login;
 import scripts.amylasetrader.MainScript;
 import scripts.api.framework.Task;
 import scripts.api.util.Shopping;
@@ -21,9 +22,13 @@ public class BuyAmylasePacks implements Task {
 
     @Override
     public boolean validate() {
-        return Shopping.isShopOpen()
-                && Inventory.getCount("Mark of grace") > 9
-                && !Inventory.isFull();
+        if(Login.getLoginState() == Login.STATE.INGAME) {
+            return Shopping.isShopOpen()
+                    && Inventory.getCount("Mark of grace") > 9
+                    && !Inventory.isFull();
+        }
+        return false;
+
     }
 
     @Override

@@ -27,9 +27,12 @@ public class TradeGrace implements Task {
 
     @Override
     public boolean validate() {
-        return Player.getPosition().distanceTo(new RSTile(3049, 4973, 1)) < 20
-                && !Shopping.isShopOpen()
-                && Inventory.getCount("Mark of grace") > 9;
+        if (Login.getLoginState() == Login.STATE.INGAME) {
+            return Player.getPosition().distanceTo(new RSTile(3049, 4973, 1)) < 20
+                    && !Shopping.isShopOpen()
+                    && Inventory.getCount("Mark of grace") > 9;
+        }
+        return false;
     }
 
     @Override

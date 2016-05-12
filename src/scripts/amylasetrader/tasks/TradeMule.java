@@ -3,6 +3,7 @@ package scripts.amylasetrader.tasks;
 import org.tribot.api.Timing;
 import org.tribot.api.types.generic.Condition;
 import org.tribot.api2007.Inventory;
+import org.tribot.api2007.Login;
 import org.tribot.api2007.Players;
 import org.tribot.api2007.Trading;
 import org.tribot.api2007.types.RSPlayer;
@@ -23,8 +24,11 @@ public class TradeMule implements Task {
 
     @Override
     public boolean validate() {
-        mule = Players.findNearest(script.getMuleName());
-        return mule.length > 0;
+        if (Login.getLoginState() == Login.STATE.INGAME) {
+            mule = Players.findNearest(script.getMuleName());
+            return mule.length > 0;
+        }
+        return false;
     }
 
     @Override

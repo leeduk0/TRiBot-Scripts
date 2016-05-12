@@ -3,10 +3,7 @@ package scripts.amylasetrader.tasks;
 import org.tribot.api.General;
 import org.tribot.api.Timing;
 import org.tribot.api.types.generic.Condition;
-import org.tribot.api2007.Objects;
-import org.tribot.api2007.PathFinding;
-import org.tribot.api2007.Player;
-import org.tribot.api2007.Walking;
+import org.tribot.api2007.*;
 import org.tribot.api2007.types.RSObject;
 import org.tribot.api2007.types.RSTile;
 import org.tribot.api2007.util.DPathNavigator;
@@ -27,7 +24,10 @@ public class EnterRoguesDen implements Task {
 
     @Override
     public boolean validate() {
-        return Areas.BURTHORPE_INN.contains(Player.getPosition());
+        if (Login.getLoginState() == Login.STATE.INGAME) {
+            return Areas.BURTHORPE_INN.contains(Player.getPosition());
+        }
+        return false;
     }
 
     @Override

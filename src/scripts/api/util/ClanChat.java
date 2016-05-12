@@ -96,18 +96,22 @@ public class ClanChat
     {
         if (!isInClanChat())
         {
-            clan.getChild(8).click("Join Chat");
+            RSInterface rsInterfaceChild = clan.getChild(8);
+            if(rsInterfaceChild != null) {
+                if(rsInterfaceChild.click("Join Chat")) {
+                    Timing.waitCondition(new Condition() {
+                        @Override
+                        public boolean active() {
+                            General.sleep(200);
+                            return Interfaces.get(162, 32).getText() != null;
+                        }
+                    }, General.random(900, 1500));
 
-            Timing.waitCondition(new Condition()
-            {
-                @Override
-                public boolean active()
-                {
-                    return Interfaces.get(162, 32) != null;
+                    Keyboard.typeSend(clanChat);
                 }
-            }, General.random(900, 1500));
 
-            Keyboard.typeSend(clanChat);
+
+            }
         }
     }
 
@@ -148,13 +152,13 @@ public class ClanChat
         return null;
     }
 
-    public static boolean isInClanChat()
-    {
-        if (clan != null)
-        {
-            return clan.getChild(8).getText().equals("Leave Chat");
+    public static boolean isInClanChat() {
+        if (clan != null) {
+            RSInterface rsInterface = clan.getChild(8);
+            if(rsInterface != null) {
+                return rsInterface.getText().equals("Leave Chat");
+            }
         }
-
         return false;
     }
 
@@ -203,15 +207,15 @@ public class ClanChat
     {
         if (clanList != null)
         {
-            for (RSInterfaceComponent c : clanList.getChildren())
-            {
-                if (cleanString(c.getText().toLowerCase()).equals(player.toLowerCase()))
-                {
-                    return c;
+            RSInterfaceComponent[] components = clanList.getChildren();
+            if(components != null) {
+                for (RSInterfaceComponent component : components) {
+                    if (cleanString(component.getText().toLowerCase()).equals(player.toLowerCase())) {
+                        return component;
+                    }
                 }
             }
         }
-
         return null;
     }
 

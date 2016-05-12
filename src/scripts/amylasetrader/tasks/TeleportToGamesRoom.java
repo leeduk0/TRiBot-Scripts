@@ -1,6 +1,7 @@
 package scripts.amylasetrader.tasks;
 
 import org.tribot.api.General;
+import org.tribot.api2007.Login;
 import scripts.amylasetrader.MainScript;
 import scripts.api.framework.Task;
 import scripts.api.util.Minigames;
@@ -18,7 +19,10 @@ public class TeleportToGamesRoom implements Task {
 
     @Override
     public boolean validate() {
-        return script.isNeedToTeleport();
+        if (Login.getLoginState() == Login.STATE.INGAME) {
+            return script.isNeedToTeleport();
+        }
+        return false;
     }
 
     @Override

@@ -3,6 +3,7 @@ package scripts.amylasetrader.tasks;
 import org.tribot.api.General;
 import org.tribot.api.Timing;
 import org.tribot.api.types.generic.Condition;
+import org.tribot.api2007.Login;
 import scripts.amylasetrader.MainScript;
 import scripts.api.framework.Task;
 import scripts.api.util.ClanChat;
@@ -20,7 +21,11 @@ public class JoinClan implements Task {
 
     @Override
     public boolean validate() {
-        return !ClanChat.isInClanChat();
+
+        if (Login.getLoginState() == Login.STATE.INGAME) {
+            return !ClanChat.isInClanChat();
+        }
+        return false;
     }
 
     @Override

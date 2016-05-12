@@ -2,6 +2,7 @@ package scripts.amylasetrader.tasks;
 
 import org.tribot.api.General;
 import org.tribot.api.Timing;
+import org.tribot.api2007.Login;
 import org.tribot.api2007.Walking;
 import org.tribot.api2007.WebWalking;
 import org.tribot.api.types.generic.Condition;
@@ -24,7 +25,10 @@ public class WalkToInn implements Task {
 
     @Override
     public boolean validate() {
-        return Areas.GAMES_ROOM_TOP_FLOOR.contains(Player.getPosition());
+        if (Login.getLoginState() == Login.STATE.INGAME) {
+            return Areas.GAMES_ROOM_TOP_FLOOR.contains(Player.getPosition());
+        }
+        return false;
     }
 
     @Override

@@ -4,6 +4,7 @@ import org.tribot.api.General;
 import org.tribot.api.Timing;
 import org.tribot.api.types.generic.Condition;
 import org.tribot.api2007.Inventory;
+import org.tribot.api2007.Login;
 import org.tribot.api2007.types.RSItem;
 import scripts.amylasetrader.MainScript;
 import scripts.api.framework.Task;
@@ -21,8 +22,11 @@ public class OpenAmylasePacks implements Task {
     }
     @Override
     public boolean validate() {
-        return Inventory.isFull()
-                && Inventory.getCount("Amylase pack") > 0;
+        if (Login.getLoginState() == Login.STATE.INGAME) {
+            return Inventory.isFull()
+                    && Inventory.getCount("Amylase pack") > 0;
+        }
+        return false;
     }
 
     @Override

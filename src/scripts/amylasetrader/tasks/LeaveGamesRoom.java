@@ -6,6 +6,7 @@ import org.tribot.api.General;
 import org.tribot.api.Timing;
 import org.tribot.api.types.generic.Condition;
 import org.tribot.api.types.generic.Filter;
+import org.tribot.api2007.Login;
 import org.tribot.api2007.Objects;
 import org.tribot.api2007.Player;
 import org.tribot.api2007.types.RSArea;
@@ -36,9 +37,12 @@ public class LeaveGamesRoom implements Task {
 
     @Override
     public boolean validate() {
-        currentPosition = Player.getPosition();
-        return GAMES_ROOM_BOTTOM_FLOOR.contains(currentPosition)
-                || GAMES_ROOM_MIDDLE_FLOOR.contains(currentPosition);
+        if (Login.getLoginState() == Login.STATE.INGAME) {
+            currentPosition = Player.getPosition();
+            return GAMES_ROOM_BOTTOM_FLOOR.contains(currentPosition)
+                    || GAMES_ROOM_MIDDLE_FLOOR.contains(currentPosition);
+        }
+        return false;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package scripts.amylasetrader;
 
 import org.tribot.api.General;
+import org.tribot.api2007.Login;
 import org.tribot.script.Script;
 import org.tribot.script.ScriptManifest;
 import org.tribot.script.interfaces.MessageListening07;

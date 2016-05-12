@@ -3,6 +3,7 @@ package scripts.amylasetrader.tasks;
 import org.tribot.api.Timing;
 import org.tribot.api.types.generic.Condition;
 import org.tribot.api2007.Game;
+import org.tribot.api2007.Login;
 import org.tribot.api2007.WorldHopper;
 import scripts.amylasetrader.MainScript;
 import scripts.api.framework.Task;
@@ -23,8 +24,11 @@ public class HopToMule implements Task {
 
     @Override
     public boolean validate() {
-        muleWorld = ClanChat.getPlayerWorld(script.getMuleName());
-        return muleWorld != Game.getCurrentWorld();
+        if(Login.getLoginState() == Login.STATE.INGAME) {
+            muleWorld = ClanChat.getPlayerWorld(script.getMuleName());
+            return muleWorld != Game.getCurrentWorld();
+        }
+        return false;
     }
 
     @Override
