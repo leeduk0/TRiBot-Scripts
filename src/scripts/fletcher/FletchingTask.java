@@ -5,7 +5,8 @@ import org.tribot.api2007.Skills;
 import scripts.api.framework.Task;
 import scripts.fletcher.data.Goal;
 import scripts.fletcher.data.Item;
-import scripts.fletcher.tasks.FletchBank;
+import scripts.fletcher.data.Method;
+import scripts.fletcher.tasks.Bank;
 import scripts.fletcher.tasks.Fletch;
 import scripts.fletcher.tasks.Restock;
 import scripts.fletcher.tasks.StringBows;
@@ -18,6 +19,12 @@ public class FletchingTask {
 
     private Item item;
     private Goal goal;
+    private Method method;
+
+    public Method getMethod() {
+        return method;
+    }
+
     private int goalTarget;
 
     private List<Task> tasks = new ArrayList<>();
@@ -50,13 +57,13 @@ public class FletchingTask {
                 Collections.addAll(
                         tasks,
                         new Fletch(this),
-                        new FletchBank(this));
+                        new Bank(this));
                 break;
             case STRING:
                 Collections.addAll(
                         tasks,
                         new StringBows(this),
-                        new FletchBank(this));
+                        new Bank(this));
         }
 
         if (goal == goal.GRAND_EXCHANGE) {

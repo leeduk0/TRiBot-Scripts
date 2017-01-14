@@ -8,4 +8,6 @@ public enum Goal {
     AMOUNT,
     GRAND_EXCHANGE
 
+
+
 }
